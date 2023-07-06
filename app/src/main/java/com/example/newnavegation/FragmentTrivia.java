@@ -4,9 +4,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.newnavegation.databinding.FragmentTriviaBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,10 +18,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class FragmentTrivia extends Fragment {
+    private FragmentTriviaBinding binding;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "nombre";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -51,14 +57,27 @@ public class FragmentTrivia extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam2= getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding= FragmentTriviaBinding.inflate(getLayoutInflater(),container,false);
+
+        binding.hola.setText("Hola"+ mParam1);
+
+        binding.enviarBoton.setOnClickListener(v -> {
+            if(binding.radioGroup.getCheckedRadioButtonId() == binding.andy.getId()){
+                Toast.makeText(getContext(),"Correctooo", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(getContext(),"Nooooo", Toast.LENGTH_LONG).show();
+
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trivia, container, false);
+        return binding.getRoot();
     }
 }
