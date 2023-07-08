@@ -68,7 +68,7 @@ public class FragmentFirst extends Fragment {
                 String nombres= binding.ingresaNombre.getText().toString();
                 Bundle bundle= new Bundle();
                 bundle.putString("nombre", nombres);
-            Navigation.findNavController(getView()).navigate(R.id.action_fragmentFirst_to_fragmentTrivia);
+            Navigation.findNavController(getView()).navigate(R.id.action_fragmentFirst_to_fragmentTrivia, bundle);
         });
         // Inflate the layout for this fragment
         return binding.getRoot();
